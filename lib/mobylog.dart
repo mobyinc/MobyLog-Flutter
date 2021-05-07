@@ -10,6 +10,7 @@ class MobyLog {
 
   String? _endpointUrl;
   http.Client? _httpClient;
+  String _userId = 'anonymous';
 
   static final MobyLog _instance = MobyLog._privateConstructor();
 
@@ -22,7 +23,23 @@ class MobyLog {
     _httpClient = httpClient;
   }
 
-  Future<bool> logEvent(String userId, String eventType, String name,
+  void setUser(String userId) {
+    _userId = userId;
+  }
+
+  void clearUser() {
+    _userId = 'anonymous';
+  }
+
+  Future<bool> screen(String name, {String? info, Map? data}) async {
+    return _log(_userId, 'screen', name, info: info, data: data);
+  }
+
+  Future<bool> event(String name, {String? info, Map? data}) async {
+    return _log(_userId, 'event', name, info: info, data: data);
+  }
+
+  Future<bool> _log(String userId, String eventType, String name,
       {String? info, Map? data}) async {
     if (_endpointUrl == null) throw ErrorDescription('must initialize logger');
     if (_httpClient == null)

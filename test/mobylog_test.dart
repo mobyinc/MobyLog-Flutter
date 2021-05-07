@@ -14,15 +14,14 @@ void main() {
 
   test('logs an event', () {
     expect(
-        logger
-            .logEvent('tester', 'screen', 'home')
-            .then((value) => expect(value, true)),
-        completes);
+        logger.screen('home').then((value) => expect(value, true)), completes);
   });
 
   test('logs extra data', () {
+    logger.setUser('tom');
+
     expect(
-        logger.logEvent('tester', 'screen', 'home',
+        logger.event('toggle',
             info: 'testing',
             data: {'mykey': 'value'}).then((value) => expect(value, true)),
         completes);
