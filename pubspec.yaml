@@ -1,4 +1,4 @@
-name: moby_log
+name: mobylog
 description: An ultralight MobyLog client for Flutter
 version: 0.0.1
 homepage: https://mobyinc.com
