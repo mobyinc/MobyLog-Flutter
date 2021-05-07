@@ -1,10 +1,16 @@
 import 'package:flutter_test/flutter_test.dart';
-
+import 'package:http/http.dart' as http;
+import 'package:http/testing.dart';
 import 'package:moby_log/moby_log.dart';
 
 void main() {
   final logger = MobyLog();
-  logger.init('https://moby-log-dev.apps.mobyinc.com');
+
+  MockClient testClient = MockClient((request) async {
+    return http.Response('', 201);
+  });
+
+  logger.init('https://mobymock', testClient);
 
   test('logs an event', () {
     expect(
