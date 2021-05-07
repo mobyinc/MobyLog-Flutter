@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
-import 'package:moby_log/moby_log.dart';
+import 'package:mobylog/mobylog.dart';
 
 void main() {
   final logger = MobyLog();

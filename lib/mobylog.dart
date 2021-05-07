@@ -1,4 +1,4 @@
-library moby_log;
+library mobylog;
 
 import 'dart:async';
 import 'package:flutter/material.dart';
