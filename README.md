@@ -6,6 +6,7 @@ For use with https://github.com/mobyinc/MobyLog
 
 * Add package
 * As early as possible, call init with the server endpoint `MobyLog().init('https://my-logging-server', http.Client());`
+* To switch off actual logging, call `MobyLog().switchOff()` right after init
 * Set user once known `MobyLog.setUser(userIdentifier)`
 * Track screens and events
 

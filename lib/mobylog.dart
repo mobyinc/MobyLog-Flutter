@@ -11,6 +11,7 @@ class MobyLog {
   String? _endpointUrl;
   http.Client? _httpClient;
   String _userId = 'anonymous';
+  bool _switchedOff = false;
 
   static final MobyLog _instance = MobyLog._privateConstructor();
 
@@ -31,6 +32,10 @@ class MobyLog {
     _userId = 'anonymous';
   }
 
+  void switchOff() {
+    _switchedOff = true;
+  }
+
   Future<bool> screen(String name, {String? info, Map? data}) async {
     return _log(_userId, 'screen', name, info: info, data: data);
   }
@@ -44,6 +49,7 @@ class MobyLog {
     if (_endpointUrl == null) throw ErrorDescription('must initialize logger');
     if (_httpClient == null)
       throw ErrorDescription('must initialize http client');
+    if (_switchedOff) return true;
 
     var uri = Uri.parse('$_endpointUrl/events');
     Map bodyData = {'userId': userId, 'eventType': eventType, 'name': name};
